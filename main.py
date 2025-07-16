@@ -7,13 +7,14 @@ from sklearn.neighbors import KNeighborsClassifier
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
-origin = ["*"]
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = origin,
-    allow_credentials = True,
-    allow_methods = ["*"],
-    allow_headers = ["*"]
+    allow_origins=["*"],  # Or use ["https://stellar-puffpuff-f452be.netlify.app"] for more security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 df = pd.read_csv("Customer-Churn.csv")
 async def univariate_data_cou(df:pd.DataFrame,groupby:str,col:str,title:str):
